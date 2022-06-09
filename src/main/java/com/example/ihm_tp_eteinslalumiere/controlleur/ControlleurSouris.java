@@ -1,6 +1,5 @@
 package com.example.ihm_tp_eteinslalumiere.controlleur;
 
-import com.example.ihm_tp_eteinslalumiere.Constantes;
 import com.example.ihm_tp_eteinslalumiere.modele.Lumiere;
 import com.example.ihm_tp_eteinslalumiere.vue.VueGraphique;
 import javafx.event.EventHandler;
