@@ -7,10 +7,14 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
 import javafx.stage.Stage;
 
 public class Jeu extends Application {
@@ -55,22 +59,29 @@ public class Jeu extends Application {
         stage.setScene(scene);
         stage.show();
 
+        stage.setResizable(false);
+
         augmenter.setOnAction(event -> modele.setNombreAleatoire(1));
 
         baisser.setOnAction(event -> modele.setNombreAleatoire(-1));
 
         quitter.setOnAction(event -> {
-           modele.initGrid();
-           vueGraphique.initGrid();
-           vueGraphique.update();
+            modele.initGrid();
+            vueGraphique.initGrid();
+            modele.configuration = true;
+            configurer.setDisable(true);
+            jouer.setDisable(false);
+            random.setDisable(false);
+            vueGraphique.timeLine.stop();
         });
+
         jouer.setOnAction(event -> {
             modele.setConfiguration();
             jouer.setDisable(true);
             configurer.setDisable(false);
             random.setDisable(true);
-
         });
+
         random.setOnAction(event -> {
             modele.setLampesRandom();
             vueGraphique.initGrid();
@@ -82,8 +93,8 @@ public class Jeu extends Application {
             configurer.setDisable(true);
             jouer.setDisable(false);
             random.setDisable(false);
-
-
+            vueGraphique.timeLine.stop();
+            vueGraphique.update();
         });
     }
 

@@ -21,12 +21,22 @@ public class ControlleurSouris implements EventHandler<MouseEvent> {
 
     @Override
     public void handle(MouseEvent mouseEvent) {
-        if (modele.configuration)
-            modele.basculerLampe(mouseX,mouseY);
-        else {
-            modele.changerLampe(mouseX, mouseY);
-            modele.nombre_clicks.set(modele.nombre_clicks.get()+1);
+        if (!modele.estFini()) {
+            if (modele.configuration)
+                modele.basculerLampe(mouseX, mouseY);
+            else {
+                modele.changerLampe(mouseX, mouseY);
+                modele.nombre_clicks.set(modele.nombre_clicks.get() + 1);
+            }
+            vueGraphique.update();
+            if (modele.estFini()){
+                if(modele.nombre_clicks.get() != 1)
+                    System.out.println("Vous avez gagné en " + modele.nombre_clicks.get() + " coups.\n");
+                else
+                    System.out.println("Vous avez gagné en " + modele.nombre_clicks.get() + " coup.\n");
+            }
         }
-        vueGraphique.update();
+
+
     }
 }

@@ -2,9 +2,6 @@ package com.example.ihm_tp_eteinslalumiere.modele;
 
 import com.example.ihm_tp_eteinslalumiere.Constantes;
 import javafx.beans.property.SimpleIntegerProperty;
-
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Random;
 
 public class Lumiere {
@@ -74,7 +71,11 @@ public class Lumiere {
         }
     }
 
-    public void setLampesTrue(int x,int y){
+    public void setNombre_clicks(int nombre_clicks) {
+        this.nombre_clicks.set(nombre_clicks);
+    }
+
+    public void setLampesTrue(int x, int y){
         lampes[y][x] = true;
     }
     public void setLampesFalse(int x,int y){
@@ -88,19 +89,23 @@ public class Lumiere {
     public void setConfiguration() {
         if (configuration)
             configuration = false;
-        else
+        else {
             configuration = true;
+            nombre_clicks.set(0);
+        }
     }
 
     public boolean estFini(){
-        if(!configuration)
-        for (int i = 0; i < Constantes.NOMBRE_LIGNES; i++) {
-            for (int j = 0; j < Constantes.NOMBRE_COLONNES; j++) {
-                if(lampes[i][j])
-                    return false;
+        if(!configuration && nombre_clicks.get() > 0) {
+            for (int i = 0; i < Constantes.NOMBRE_LIGNES; i++) {
+                for (int j = 0; j < Constantes.NOMBRE_COLONNES; j++) {
+                    if (lampes[i][j])
+                        return false;
+                }
             }
+            return true;
         }
-        return true;
+        return false;
     }
 
     public void setNombreAleatoire(int i){
