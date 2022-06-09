@@ -4,7 +4,6 @@ import com.example.ihm_tp_eteinslalumiere.Constantes;
 import com.example.ihm_tp_eteinslalumiere.controlleur.ControlleurSouris;
 import com.example.ihm_tp_eteinslalumiere.modele.Lumiere;
 import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.geometry.Insets;
 import javafx.scene.layout.GridPane;
@@ -12,22 +11,20 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
-import java.util.IllegalFormatCodePointException;
-
-
 public class VueGraphique extends GridPane {
-    private Lumiere model;
+
+    private final Lumiere model;
     private Rectangle[][] rectangles;
-    public int Fin = 0;
     public Timeline timeLine;
     private int time;
 
     public VueGraphique(Lumiere model) {
         this.model = model;
-        super.setTranslateX((Constantes.WIDTH_WINDOW - Constantes.WIDTH)/2 - 25);
+        super.setTranslateX((Constantes.WIDTH_WINDOW - Constantes.WIDTH) / 2.0 - 25);
         initGrid();
         update();
     }
+
     public void initGrid(){
         super.setPadding(new Insets(10));
         rectangles = new Rectangle[Constantes.NOMBRE_LIGNES][Constantes.NOMBRE_COLONNES];
@@ -46,7 +43,6 @@ public class VueGraphique extends GridPane {
             }
         }
     }
-
 
     public void update(){
         estFini();
@@ -91,4 +87,5 @@ public class VueGraphique extends GridPane {
             time++;
         }));
     }
+
 }

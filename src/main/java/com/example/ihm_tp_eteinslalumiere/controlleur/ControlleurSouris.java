@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
 public class ControlleurSouris implements EventHandler<MouseEvent> {
+
     private final Lumiere modele;
     private final VueGraphique vueGraphique;
     private final int mouseX;
@@ -36,7 +37,6 @@ public class ControlleurSouris implements EventHandler<MouseEvent> {
                     System.out.println("Vous avez gagné en " + modele.nombre_clicks.get() + " coup.\n");
             }
         }
-
-
     }
+
 }

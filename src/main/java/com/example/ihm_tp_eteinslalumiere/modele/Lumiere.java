@@ -5,11 +5,11 @@ import javafx.beans.property.SimpleIntegerProperty;
 import java.util.Random;
 
 public class Lumiere {
-    private boolean [][] lampes;
+
+    private final boolean [][] lampes;
     public boolean configuration;
     public SimpleIntegerProperty nombre_clicks;
     public SimpleIntegerProperty nombreAleatoire;
-
 
     public Lumiere() {
         this.lampes = new boolean[Constantes.NOMBRE_LIGNES][Constantes.NOMBRE_LIGNES];
@@ -48,10 +48,7 @@ public class Lumiere {
     }
 
     public void basculerLampe(int x, int y) {
-        if (lampes[y][x])
-            lampes[y][x] = false;
-        else
-            lampes[y][x] = true;
+        lampes[y][x] = !lampes[y][x];
     }
 
     public boolean DansLaGrille(int x,int y){
@@ -71,13 +68,10 @@ public class Lumiere {
         }
     }
 
-    public void setNombre_clicks(int nombre_clicks) {
-        this.nombre_clicks.set(nombre_clicks);
-    }
-
     public void setLampesTrue(int x, int y){
         lampes[y][x] = true;
     }
+
     public void setLampesFalse(int x,int y){
         lampes[y][x] = false;
     }
@@ -112,4 +106,5 @@ public class Lumiere {
         if (nombreAleatoire.get() + i <= 25 && nombreAleatoire.get() + i >= 0)
         nombreAleatoire.set(nombreAleatoire.get() + i);
     }
+
 }
